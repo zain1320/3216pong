@@ -1,0 +1,283 @@
+//`include "VGA_Controller.v"
+//`include "Clock_Divider.sv"
+module Steven_Enzo_Lab5 (
+    input MAX10_CLK1_50,
+    input [9:0] SW,
+    input [1:0] KEY,
+    output[7:0] HEX[5:0],
+    output [9:0] LED,
+
+    // VGA outputs
+    output [3:0] R, G, B,
+    output VGA_hsync, VGA_vsync, gpio0
+);
+
+    logic pixel_clk, t_clk, disp_ena, hsync, vsync, sw_en, boost, op;
+    logic [3:0] r, b, g, seg0, seg1, detect_edge;
+    logic [31:0] col, row, 
+                 rect_size_y, rect_size_x,  // rectangle size
+                 rect_ini_x, rect_ini_y,    // rectangle initial position
+                 rect_off_x, rect_off_y,    // rectangle offset from initial position
+                 rect_vel,    // rectangle velocity in pixel/clock cycle
+                 rect_boost_dist;
+/*
+    Initialize all the variables needed
+    to draw and make the rectangle move
+*/
+    initial begin
+        boost = 1'b1;
+        r = 4'b1111;
+        g = 4'b1111;
+        b = 4'b1111;
+        rect_size_x = 32'd100;
+        rect_size_y = 32'd50;
+        rect_ini_x = 32'd269;
+        rect_ini_y = 32'd189;
+        rect_off_x = 32'd0;
+        rect_off_y = 32'd0;
+        rect_vel = 32'd2;
+        rect_boost_dist = 32'd20;
+    end
+
+/*
+    Calling important modules
+*/
+    pll pll_inst (.inclk0(MAX10_CLK1_50), .c0(pixel_clk));
+    Clock_Divider div (MAX10_CLK1_50, 32'd1250000, t_clk);
+    xor4 xor4 (SW[3:0], sw_en);
+    assign op = sw_en & detect_edge[0] & detect_edge[1] & detect_edge[2] & detect_edge[3];
+
+    egde_detect detect (rect_size_x, 
+                        rect_size_y,
+                        rect_ini_x, 
+                        rect_ini_y,
+                        rect_off_x, 
+                        rect_off_y,
+                        detect_edge);
+
+    vga_controller controller (.pixel_clk  (pixel_clk),
+                               .reset_n    (KEY[0]),
+                               .h_sync     (hsync),
+                               .v_sync     (vsync),
+                               .disp_ena   (disp_ena),
+                               .column     (col),
+                               .row        (row));
+
+/*
+    Display error message here
+*/
+    mux2 mux2_0 (op, 4'b1101, 4'b1010, seg0);
+    seg_display_output seg_out_0(seg0, HEX[0]);
+
+    mux2 mux2_1 (op, 4'b1110, 4'b1010, seg1);
+    seg_display_output seg_out_1(seg1, HEX[1]);
+
+    seg_display_output seg_out_2(4'b1010, HEX[2]);
+    seg_display_output seg_out_3(4'b1010, HEX[3]);
+    seg_display_output seg_out_4(4'b1010, HEX[4]);
+    seg_display_output seg_out_5(4'b1010, HEX[5]);
+
+/*
+    Time block controlling the reset
+    and the rectangle's movement based
+    on the switches
+*/
+    always @(posedge t_clk) begin
+        if (~KEY[0]) begin
+            rect_size_x = 32'd100;
+            rect_size_y = 32'd50;
+            rect_ini_x = 32'd269;
+            rect_ini_y = 32'd189;
+            rect_off_x = 32'd0;
+            rect_off_y = 32'd0;
+            r = 4'b1111;
+            g = 4'b1111;
+            b = 4'b1111;
+        end 
+        else if (~KEY[1] && SW[9] && boost) begin
+            boost = 1'b0;
+            /* Generate the random number here
+            r = rand_R[3:0];
+            g = rand_G[3:0];
+            b = rand_B[3:0];
+            */
+        end 
+        else if (~KEY[1] && SW[8] && op && boost) begin
+            boost = 1'b0;
+            rect_size_x <= rect_size_x * 2;
+            rect_size_y <= rect_size_x * 2;
+        end 
+        else if (~KEY[1] && boost) begin
+            boost = 1'b0;
+            if (SW[0] && sw_en && detect_edge[0]) rect_off_y <= rect_off_y + rect_boost_dist; 
+            if (SW[1] && sw_en && detect_edge[1]) rect_off_x <= rect_off_x + rect_boost_dist;
+            if (SW[2] && sw_en && detect_edge[2]) rect_off_y <= rect_off_y - rect_boost_dist;
+            if (SW[3] && sw_en && detect_edge[3]) rect_off_x <= rect_off_x - rect_boost_dist;
+        end 
+        else if (KEY[1]) begin
+            boost = 1'b1;
+            if (SW[0] && sw_en && detect_edge[0]) rect_off_y <= rect_off_y + rect_vel; 
+            if (SW[1] && sw_en && detect_edge[1]) rect_off_x <= rect_off_x + rect_vel;
+            if (SW[2] && sw_en && detect_edge[2]) rect_off_y <= rect_off_y - rect_vel;
+            if (SW[3] && sw_en && detect_edge[3]) rect_off_x <= rect_off_x - rect_vel;
+        end else begin
+            if (SW[0] && sw_en && detect_edge[0]) rect_off_y <= rect_off_y + rect_vel; 
+            if (SW[1] && sw_en && detect_edge[1]) rect_off_x <= rect_off_x + rect_vel;
+            if (SW[2] && sw_en && detect_edge[2]) rect_off_y <= rect_off_y - rect_vel;
+            if (SW[3] && sw_en && detect_edge[3]) rect_off_x <= rect_off_x - rect_vel;
+        end
+    end
+
+/*
+    This displays the rectangle on the screen 
+    at whatever position it is currently at
+*/
+    always @(posedge pixel_clk) begin
+
+        if (disp_ena == 1'b1) begin
+            if ((col > rect_ini_x + rect_off_x) & 
+                (col <= rect_ini_x + rect_size_x + rect_off_x) & 
+                (row > rect_ini_y + rect_off_y) & 
+                (row <= rect_ini_y + rect_size_y + rect_off_y)) 
+                begin
+                
+                R <= r;
+                G <= g;
+                B <= b;
+
+            end else begin
+
+                R <= 4'd0;
+                G <= 4'd0;
+                B <= 4'd0;
+            end
+            
+        end else begin
+            R <= 4'd0;
+            G <= 4'd0;
+            B <= 4'd0;
+        end
+
+        VGA_hsync <= hsync;
+        VGA_vsync <= vsync;
+    end
+
+endmodule
+
+module xor4 (
+    input logic [3:0] in,
+    output logic out);
+
+    always
+        case (in)
+            4'b0000: out = 1'b1;
+            4'b0001: out = 1'b1;
+            4'b0010: out = 1'b1;
+            4'b0100: out = 1'b1;
+            4'b1000: out = 1'b1;
+            default: out = 1'b0; 
+        endcase
+
+endmodule
+
+module seg_display_output (input logic [3:0] number,
+            output [7:0] hex
+);
+
+    always @(number) begin
+        case (number)
+            4'b0000: hex[7:0] = 8'b11000000; // 0
+            4'b0001: hex[7:0] = 8'b11111001; // 1
+            4'b0010: hex[7:0] = 8'b10100100; // 2
+            4'b0011: hex[7:0] = 8'b10110000; // 3
+            4'b0100: hex[7:0] = 8'b10011001; // 4
+            4'b0101: hex[7:0] = 8'b10010010; // 5
+            4'b0110: hex[7:0] = 8'b10000010; // 6
+            4'b0111: hex[7:0] = 8'b11111000; // 7
+            4'b1000: hex[7:0] = 8'b10000000; // 8
+            4'b1001: hex[7:0] = 8'b10010000; // 9
+            4'b1010: hex[7:0] = 8'b11111111; // Display nothing
+            4'b1011: hex[7:0] = 8'b10111111; // -
+            4'b1100: hex[7:0] = 8'b10001100; // P
+            4'b1101: hex[7:0] = 8'b00101111; // r.
+            4'b1110: hex[7:0] = 8'b00000110; // E.
+            4'b1111: hex[7:0] = 8'b10001110; // F
+            default: hex[7:0] = 8'b01111111; // .
+        endcase 
+    end
+    
+endmodule
+
+module Clock_Divider (input clk_in,
+                    input logic [31:0] threshold,
+                    output clk_out
+);
+    logic [31:0] count;
+
+    initial begin
+        //clk_out = 0;
+        count = 32'd0;
+    end
+
+    always @(posedge clk_in) begin
+        count = count + 32'd1;
+        if (count >= threshold) begin // 32'd12500000 is a good threshold
+            clk_out = ~clk_out;
+            $display("%b",clk_out);
+            count = 32'd0;
+        end
+    end
+endmodule
+
+module mux2 (input logic op,
+            input logic [3:0] a, b,
+            output logic [3:0] z);
+    always
+        case (op)
+            0: z = a;
+            1: z = b;
+            default: z = 4'd0;
+        endcase
+endmodule
+
+module egde_detect (
+    input logic [31:0] rect_size_x, 
+                       rect_size_y,  
+                       rect_ini_x, 
+                       rect_ini_y,     
+                       rect_off_x, 
+                       rect_off_y,
+    output logic [3:0] detect_edge
+);
+    logic [31:0] screen_size_x,
+                 screen_size_y,
+                 real_pos_x,
+                 real_pos_y;
+
+    initial begin
+        screen_size_x <= 32'd640;
+        screen_size_y <= 32'd480; 
+        //real_pos_x <= rect_ini_x + rect_off_x;
+        //real_pos_y <= rect_ini_y + rect_off_y;
+        detect_edge <= 1'b1;
+    end
+
+// check left edge
+    always @(*) begin
+        real_pos_x <= rect_ini_x + rect_off_x;
+        real_pos_y <= rect_ini_y + rect_off_y;
+        //detect_edge = 1'b0;
+        if (real_pos_y + rect_size_y >= screen_size_y)       detect_edge[0] = 1'b0;
+        else if (real_pos_x + rect_size_x >= screen_size_x)  detect_edge[1] = 1'b0;
+        else if (real_pos_y <= 1)                            detect_edge[2] = 1'b0;
+        else if (real_pos_x <= 1)                            detect_edge[3] = 1'b0;
+
+        else begin
+            detect_edge[0] = 1'b1;
+            detect_edge[1] = 1'b1;
+            detect_edge[2] = 1'b1;
+            detect_edge[3] = 1'b1;
+        end
+    end
+
+endmodule
