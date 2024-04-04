@@ -4,22 +4,12 @@ module score(
 );
 
     // P100P2
-    
-    logic p;
-    logic one;
-    logic two;
 
-    intial begin
-        p = 4'b1100
-        one = 4'b0001;
-        two = 4'b0010;
-    end
-
-    seg_display_output seg_out_p1_1(p, HEX5);
-    seg_display_output seg_out_p1_2(one, HEX4);
-    seg_display_output seg_out_score_one(score_one, HEX3); 
-    seg_display_output seg_out_p2_1(p, HEX2);
-    seg_display_output seg_out_p2_2(two, HEX1);
-    seg_display_output seg_out_score_two(score_two, HEX0); 
+    seg_display_output seg_out_p1_1(4'b1100, HEX[5]); // P
+    seg_display_output seg_out_p1_2(4'b1101, HEX[4]); // 1.
+    seg_display_output seg_out_score_one(score_one, HEX[3]);
+    seg_display_output seg_out_p2_1(4'b1100, HEX[2]); // P
+    seg_display_output seg_out_p2_2(4'b1110, HEX[1]); // 2.
+    seg_display_output seg_out_score_two(score_two, HEX[0]);
 
 endmodule

@@ -1,5 +1,5 @@
 Flow report for pingpong
-Thu Apr 04 14:20:16 2024
+Thu Apr 04 15:32:48 2024
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -41,15 +41,15 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Thu Apr 04 14:20:16 2024       ;
+; Flow Status                        ; Successful - Thu Apr 04 15:32:48 2024       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; pingpong                                    ;
-; Top-level Entity Name              ; Ping_Pong_Final                             ;
+; Top-level Entity Name              ; ping_pong_final                             ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C7G                              ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 525 / 49,760 ( 1 % )                        ;
-;     Total combinational functions  ; 510 / 49,760 ( 1 % )                        ;
+; Total logic elements               ; 512 / 49,760 ( 1 % )                        ;
+;     Total combinational functions  ; 506 / 49,760 ( 1 % )                        ;
 ;     Dedicated logic registers      ; 139 / 49,760 ( < 1 % )                      ;
 ; Total registers                    ; 139                                         ;
 ; Total pins                         ; 89 / 360 ( 25 % )                           ;
@@ -67,7 +67,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/04/2024 14:19:33 ;
+; Start date & time ; 04/04/2024 15:32:04 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; pingpong            ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+---------------+-----------------+-----------------------------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name     ; Section Id                        ;
 +-------------------------------------+----------------------------------------+---------------+-----------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID               ; 10995770589189.171225477221168         ; --            ; --              ; --                                ;
+; COMPILER_SIGNATURE_ID               ; 10995770589189.171225912419980         ; --            ; --              ; --                                ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --              ; eda_board_design_timing           ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --              ; eda_board_design_boundary_scan    ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --              ; eda_board_design_signal_integrity ;
@@ -88,13 +88,13 @@ https://fpgasoftware.intel.com/eula.
 ; EDA_TIME_SCALE                      ; 1 ps                                   ; --            ; --              ; eda_simulation                    ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --              ; --                                ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --              ; --                                ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; Ping_Pong_Final ; Top                               ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; Ping_Pong_Final ; Top                               ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; Ping_Pong_Final ; Top                               ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; ping_pong_final ; Top                               ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; ping_pong_final ; Top                               ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; ping_pong_final ; Top                               ;
 ; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --            ; --              ; --                                ;
 ; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --              ; --                                ;
 ; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --              ; --                                ;
-; TOP_LEVEL_ENTITY                    ; Ping_Pong_Final                        ; pingpong      ; --              ; --                                ;
+; TOP_LEVEL_ENTITY                    ; ping_pong_final                        ; pingpong      ; --              ; --                                ;
 +-------------------------------------+----------------------------------------+---------------+-----------------+-----------------------------------+
 
 
@@ -103,12 +103,12 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:13     ; 1.0                     ; 4790 MB             ; 00:00:31                           ;
-; Fitter               ; 00:00:17     ; 1.1                     ; 5677 MB             ; 00:00:26                           ;
-; Assembler            ; 00:00:04     ; 1.0                     ; 4693 MB             ; 00:00:04                           ;
-; Timing Analyzer      ; 00:00:04     ; 1.2                     ; 4832 MB             ; 00:00:05                           ;
+; Analysis & Synthesis ; 00:00:13     ; 1.0                     ; 4770 MB             ; 00:00:30                           ;
+; Fitter               ; 00:00:18     ; 1.1                     ; 5658 MB             ; 00:00:27                           ;
+; Assembler            ; 00:00:04     ; 1.0                     ; 4694 MB             ; 00:00:04                           ;
+; Timing Analyzer      ; 00:00:04     ; 1.2                     ; 4831 MB             ; 00:00:05                           ;
 ; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4645 MB             ; 00:00:01                           ;
-; Total                ; 00:00:39     ; --                      ; --                  ; 00:01:07                           ;
+; Total                ; 00:00:40     ; --                      ; --                  ; 00:01:07                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

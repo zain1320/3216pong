@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "MAX 10"
 set_global_assignment -name DEVICE 10M50DAF484C7G
-set_global_assignment -name TOP_LEVEL_ENTITY Ping_Pong_Final
+set_global_assignment -name TOP_LEVEL_ENTITY ping_pong_final
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "14:37:36  APRIL 03, 2024"
 set_global_assignment -name LAST_QUARTUS_VERSION "20.1.0 Lite Edition"
@@ -145,10 +145,12 @@ set_location_assignment PIN_C10 -to SW[0]
 set_location_assignment PIN_N3 -to VGA_hsync
 set_location_assignment PIN_N1 -to VGA_vsync
 set_location_assignment PIN_V10 -to gpio0
-set_global_assignment -name SYSTEMVERILOG_FILE Seg_Display_Output.sv
-set_global_assignment -name SYSTEMVERILOG_FILE Ping_Pong_Final.sv
-set_global_assignment -name SYSTEMVERILOG_FILE Edge_Detect.sv
-set_global_assignment -name SYSTEMVERILOG_FILE Clock_Divider.sv
+set_global_assignment -name VERILOG_FILE vga_controller.v
+set_global_assignment -name SYSTEMVERILOG_FILE seg_display_output.sv
+set_global_assignment -name SYSTEMVERILOG_FILE score.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ping_pong_final.sv
+set_global_assignment -name SYSTEMVERILOG_FILE edge_detect.sv
+set_global_assignment -name SYSTEMVERILOG_FILE clock_divider.sv
 set_global_assignment -name VERILOG_FILE ip/pll.v
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top

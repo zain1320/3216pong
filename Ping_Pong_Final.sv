@@ -116,16 +116,16 @@ module ping_pong_final (
 /*
     Display error message here
 */
-    mux2 mux2_0 (op, 4'b1101, 4'b1010, seg0);
-    seg_display_output seg_out_0(seg0, HEX[0]);
+    // mux2 mux2_0 (op, 4'b1101, 4'b1010, seg0);
+    // seg_display_output seg_out_0(seg0, HEX[0]);
 
-    mux2 mux2_1 (op, 4'b1110, 4'b1010, seg1);
-    seg_display_output seg_out_1(seg1, HEX[1]);
+    // mux2 mux2_1 (op, 4'b1110, 4'b1010, seg1);
+    // seg_display_output seg_out_1(seg1, HEX[1]);
 
-    seg_display_output seg_out_2(4'b1010, HEX[2]);
-    seg_display_output seg_out_3(4'b1010, HEX[3]);
-    seg_display_output seg_out_4(4'b1010, HEX[4]);
-    seg_display_output seg_out_5(4'b1010, HEX[5]);
+    // seg_display_output seg_out_2(4'b1010, HEX[2]);
+    // seg_display_output seg_out_3(4'b1010, HEX[3]);
+    // seg_display_output seg_out_4(4'b1010, HEX[4]);
+    // seg_display_output seg_out_5(4'b1010, HEX[5]);
 
     assign LED[7:0] = collision_detect[7:0];
 

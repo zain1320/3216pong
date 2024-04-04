@@ -1,10 +1,10 @@
-Analysis & Synthesis Status : Successful - Thu Apr 04 14:19:45 2024
+Analysis & Synthesis Status : Successful - Thu Apr 04 15:32:16 2024
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 Revision Name : pingpong
-Top-level Entity Name : Ping_Pong_Final
+Top-level Entity Name : ping_pong_final
 Family : MAX 10
-Total logic elements : 522
-    Total combinational functions : 509
+Total logic elements : 518
+    Total combinational functions : 505
     Dedicated logic registers : 139
 Total registers : 139
 Total pins : 89

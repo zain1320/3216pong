@@ -1,12 +1,12 @@
-Fitter Status : Successful - Thu Apr 04 14:20:03 2024
+Fitter Status : Successful - Thu Apr 04 15:32:35 2024
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 Revision Name : pingpong
-Top-level Entity Name : Ping_Pong_Final
+Top-level Entity Name : ping_pong_final
 Family : MAX 10
 Device : 10M50DAF484C7G
 Timing Models : Final
-Total logic elements : 525 / 49,760 ( 1 % )
-    Total combinational functions : 510 / 49,760 ( 1 % )
+Total logic elements : 512 / 49,760 ( 1 % )
+    Total combinational functions : 506 / 49,760 ( 1 % )
     Dedicated logic registers : 139 / 49,760 ( < 1 % )
 Total registers : 139
 Total pins : 89 / 360 ( 25 % )
