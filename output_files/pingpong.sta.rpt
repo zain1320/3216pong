@@ -1,5 +1,5 @@
 Timing Analyzer report for pingpong
-Thu Apr 04 13:31:22 2024
+Thu Apr 04 14:20:14 2024
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -92,14 +92,14 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.39        ;
+; Average used               ; 1.22        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;  13.0%      ;
-;     Processor 3            ;  12.8%      ;
-;     Processor 4            ;  12.8%      ;
+;     Processor 2            ;   7.4%      ;
+;     Processor 3            ;   7.3%      ;
+;     Processor 4            ;   7.2%      ;
 +----------------------------+-------------+
 
 
@@ -108,10 +108,10 @@ https://fpgasoftware.intel.com/eula.
 +------------------------------------------------------+-----------+--------+------------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+---------------+--------------------------------------------------------+----------------------------------------------------------+
 ; Clock Name                                           ; Type      ; Period ; Frequency  ; Rise  ; Fall   ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master        ; Source                                                 ; Targets                                                  ;
 +------------------------------------------------------+-----------+--------+------------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+---------------+--------------------------------------------------------+----------------------------------------------------------+
-; Clock_Divider:div|clk_out                            ; Base      ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500  ;            ;           ;             ;       ;        ;           ;            ;          ;               ;                                                        ; { Clock_Divider:div|clk_out }                            ;
+; ball_off_x[10]                                       ; Base      ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500  ;            ;           ;             ;       ;        ;           ;            ;          ;               ;                                                        ; { ball_off_x[10] }                                       ;
+; clock_divider:div|clk_out                            ; Base      ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500  ;            ;           ;             ;       ;        ;           ;            ;          ;               ;                                                        ; { clock_divider:div|clk_out }                            ;
 ; MAX10_CLK1_50                                        ; Base      ; 20.000 ; 50.0 MHz   ; 0.000 ; 10.000 ;            ;           ;             ;       ;        ;           ;            ;          ;               ;                                                        ; { MAX10_CLK1_50 }                                        ;
 ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; Generated ; 39.729 ; 25.17 MHz  ; 0.000 ; 19.864 ; 50.00      ; 147       ; 74          ;       ;        ;           ;            ; false    ; MAX10_CLK1_50 ; pll_inst|altpll_component|auto_generated|pll1|inclk[0] ; { pll_inst|altpll_component|auto_generated|pll1|clk[0] } ;
-; rect_off_x[10]                                       ; Base      ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500  ;            ;           ;             ;       ;        ;           ;            ;          ;               ;                                                        ; { rect_off_x[10] }                                       ;
 +------------------------------------------------------+-----------+--------+------------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+---------------+--------------------------------------------------------+----------------------------------------------------------+
 
 
@@ -120,10 +120,10 @@ https://fpgasoftware.intel.com/eula.
 +------------+-----------------+------------------------------------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                                           ; Note ;
 +------------+-----------------+------------------------------------------------------+------+
-; 60.91 MHz  ; 60.91 MHz       ; rect_off_x[10]                                       ;      ;
-; 96.18 MHz  ; 96.18 MHz       ; MAX10_CLK1_50                                        ;      ;
-; 147.15 MHz ; 147.15 MHz      ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ;      ;
-; 168.8 MHz  ; 168.8 MHz       ; Clock_Divider:div|clk_out                            ;      ;
+; 71.1 MHz   ; 71.1 MHz        ; ball_off_x[10]                                       ;      ;
+; 117.98 MHz ; 117.98 MHz      ; MAX10_CLK1_50                                        ;      ;
+; 133.03 MHz ; 133.03 MHz      ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ;      ;
+; 309.21 MHz ; 309.21 MHz      ; clock_divider:div|clk_out                            ;      ;
 +------------+-----------------+------------------------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -133,10 +133,10 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +------------------------------------------------------+---------+---------------+
 ; Clock                                                ; Slack   ; End Point TNS ;
 +------------------------------------------------------+---------+---------------+
-; rect_off_x[10]                                       ; -11.060 ; -29.664       ;
-; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; -10.913 ; -130.107      ;
-; Clock_Divider:div|clk_out                            ; -9.329  ; -811.504      ;
-; MAX10_CLK1_50                                        ; -1.753  ; -1.753        ;
+; clock_divider:div|clk_out                            ; -10.290 ; -534.256      ;
+; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; -9.081  ; -106.671      ;
+; ball_off_x[10]                                       ; -8.986  ; -25.768       ;
+; MAX10_CLK1_50                                        ; -1.750  ; -1.750        ;
 +------------------------------------------------------+---------+---------------+
 
 
@@ -145,10 +145,10 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +------------------------------------------------------+-------+---------------+
 ; Clock                                                ; Slack ; End Point TNS ;
 +------------------------------------------------------+-------+---------------+
-; Clock_Divider:div|clk_out                            ; 0.334 ; 0.000         ;
-; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 0.502 ; 0.000         ;
-; rect_off_x[10]                                       ; 0.771 ; 0.000         ;
-; MAX10_CLK1_50                                        ; 1.009 ; 0.000         ;
+; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 0.498 ; 0.000         ;
+; clock_divider:div|clk_out                            ; 0.676 ; 0.000         ;
+; MAX10_CLK1_50                                        ; 0.988 ; 0.000         ;
+; ball_off_x[10]                                       ; 1.342 ; 0.000         ;
 +------------------------------------------------------+-------+---------------+
 
 
@@ -169,10 +169,10 @@ No paths to report.
 +------------------------------------------------------+--------+---------------+
 ; Clock                                                ; Slack  ; End Point TNS ;
 +------------------------------------------------------+--------+---------------+
-; rect_off_x[10]                                       ; -2.862 ; -331.275      ;
-; Clock_Divider:div|clk_out                            ; -1.403 ; -133.285      ;
-; MAX10_CLK1_50                                        ; 9.647  ; 0.000         ;
-; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 19.586 ; 0.000         ;
+; ball_off_x[10]                                       ; -2.228 ; -283.708      ;
+; clock_divider:div|clk_out                            ; -1.403 ; -84.180       ;
+; MAX10_CLK1_50                                        ; 9.637  ; 0.000         ;
+; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 19.585 ; 0.000         ;
 +------------------------------------------------------+--------+---------------+
 
 
@@ -183,7 +183,7 @@ The design MTBF is not calculated because there are no specified synchronizers i
 Number of Synchronizer Chains Found: 2
 Shortest Synchronizer Chain: 2 Registers
 Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-Worst Case Available Settling Time: 37.296 ns
+Worst Case Available Settling Time: 38.972 ns
 
 
 
@@ -193,24 +193,24 @@ Worst Case Available Settling Time: 37.296 ns
 +------------+-----------------+------------------------------------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                                           ; Note ;
 +------------+-----------------+------------------------------------------------------+------+
-; 66.28 MHz  ; 66.28 MHz       ; rect_off_x[10]                                       ;      ;
-; 105.39 MHz ; 105.39 MHz      ; MAX10_CLK1_50                                        ;      ;
-; 162.65 MHz ; 162.65 MHz      ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ;      ;
-; 184.47 MHz ; 184.47 MHz      ; Clock_Divider:div|clk_out                            ;      ;
+; 75.77 MHz  ; 75.77 MHz       ; ball_off_x[10]                                       ;      ;
+; 128.8 MHz  ; 128.8 MHz       ; MAX10_CLK1_50                                        ;      ;
+; 141.98 MHz ; 141.98 MHz      ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ;      ;
+; 337.5 MHz  ; 337.5 MHz       ; clock_divider:div|clk_out                            ;      ;
 +------------+-----------------+------------------------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
-+--------------------------------------------------------------------------------+
-; Slow 1200mV 0C Model Setup Summary                                             ;
-+------------------------------------------------------+---------+---------------+
-; Clock                                                ; Slack   ; End Point TNS ;
-+------------------------------------------------------+---------+---------------+
-; rect_off_x[10]                                       ; -10.158 ; -27.457       ;
-; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; -9.687  ; -115.442      ;
-; Clock_Divider:div|clk_out                            ; -8.431  ; -735.180      ;
-; MAX10_CLK1_50                                        ; -1.555  ; -1.555        ;
-+------------------------------------------------------+---------+---------------+
++-------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Setup Summary                                            ;
++------------------------------------------------------+--------+---------------+
+; Clock                                                ; Slack  ; End Point TNS ;
++------------------------------------------------------+--------+---------------+
+; clock_divider:div|clk_out                            ; -9.238 ; -480.676      ;
+; ball_off_x[10]                                       ; -8.360 ; -23.914       ;
+; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; -8.061 ; -94.676       ;
+; MAX10_CLK1_50                                        ; -1.533 ; -1.533        ;
++------------------------------------------------------+--------+---------------+
 
 
 +------------------------------------------------------------------------------+
@@ -218,10 +218,10 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +------------------------------------------------------+-------+---------------+
 ; Clock                                                ; Slack ; End Point TNS ;
 +------------------------------------------------------+-------+---------------+
-; Clock_Divider:div|clk_out                            ; 0.226 ; 0.000         ;
-; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 0.422 ; 0.000         ;
-; rect_off_x[10]                                       ; 0.589 ; 0.000         ;
-; MAX10_CLK1_50                                        ; 0.925 ; 0.000         ;
+; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 0.419 ; 0.000         ;
+; clock_divider:div|clk_out                            ; 0.609 ; 0.000         ;
+; MAX10_CLK1_50                                        ; 0.910 ; 0.000         ;
+; ball_off_x[10]                                       ; 1.195 ; 0.000         ;
 +------------------------------------------------------+-------+---------------+
 
 
@@ -242,10 +242,10 @@ No paths to report.
 +------------------------------------------------------+--------+---------------+
 ; Clock                                                ; Slack  ; End Point TNS ;
 +------------------------------------------------------+--------+---------------+
-; rect_off_x[10]                                       ; -2.559 ; -281.594      ;
-; Clock_Divider:div|clk_out                            ; -1.403 ; -133.285      ;
-; MAX10_CLK1_50                                        ; 9.655  ; 0.000         ;
-; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 19.569 ; 0.000         ;
+; ball_off_x[10]                                       ; -2.033 ; -235.258      ;
+; clock_divider:div|clk_out                            ; -1.403 ; -84.180       ;
+; MAX10_CLK1_50                                        ; 9.648  ; 0.000         ;
+; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 19.575 ; 0.000         ;
 +------------------------------------------------------+--------+---------------+
 
 
@@ -256,7 +256,7 @@ The design MTBF is not calculated because there are no specified synchronizers i
 Number of Synchronizer Chains Found: 2
 Shortest Synchronizer Chain: 2 Registers
 Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-Worst Case Available Settling Time: 37.411 ns
+Worst Case Available Settling Time: 39.003 ns
 
 
 
@@ -266,10 +266,10 @@ Worst Case Available Settling Time: 37.411 ns
 +------------------------------------------------------+--------+---------------+
 ; Clock                                                ; Slack  ; End Point TNS ;
 +------------------------------------------------------+--------+---------------+
-; rect_off_x[10]                                       ; -4.748 ; -12.734       ;
-; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; -4.624 ; -55.020       ;
-; Clock_Divider:div|clk_out                            ; -3.478 ; -300.004      ;
-; MAX10_CLK1_50                                        ; -0.685 ; -0.685        ;
+; ball_off_x[10]                                       ; -3.847 ; -11.158       ;
+; clock_divider:div|clk_out                            ; -3.842 ; -194.144      ;
+; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; -3.771 ; -44.336       ;
+; MAX10_CLK1_50                                        ; -0.673 ; -0.673        ;
 +------------------------------------------------------+--------+---------------+
 
 
@@ -278,10 +278,10 @@ Worst Case Available Settling Time: 37.411 ns
 +------------------------------------------------------+-------+---------------+
 ; Clock                                                ; Slack ; End Point TNS ;
 +------------------------------------------------------+-------+---------------+
-; Clock_Divider:div|clk_out                            ; 0.015 ; 0.000         ;
 ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 0.220 ; 0.000         ;
-; MAX10_CLK1_50                                        ; 0.390 ; 0.000         ;
-; rect_off_x[10]                                       ; 0.596 ; 0.000         ;
+; clock_divider:div|clk_out                            ; 0.264 ; 0.000         ;
+; MAX10_CLK1_50                                        ; 0.377 ; 0.000         ;
+; ball_off_x[10]                                       ; 0.661 ; 0.000         ;
 +------------------------------------------------------+-------+---------------+
 
 
@@ -302,10 +302,10 @@ No paths to report.
 +------------------------------------------------------+--------+---------------+
 ; Clock                                                ; Slack  ; End Point TNS ;
 +------------------------------------------------------+--------+---------------+
-; Clock_Divider:div|clk_out                            ; -1.000 ; -95.000       ;
-; rect_off_x[10]                                       ; -0.915 ; -47.985       ;
-; MAX10_CLK1_50                                        ; 9.328  ; 0.000         ;
-; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 19.633 ; 0.000         ;
+; clock_divider:div|clk_out                            ; -1.000 ; -60.000       ;
+; ball_off_x[10]                                       ; -0.708 ; -24.091       ;
+; MAX10_CLK1_50                                        ; 9.329  ; 0.000         ;
+; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 19.635 ; 0.000         ;
 +------------------------------------------------------+--------+---------------+
 
 
@@ -316,7 +316,7 @@ The design MTBF is not calculated because there are no specified synchronizers i
 Number of Synchronizer Chains Found: 2
 Shortest Synchronizer Chain: 2 Registers
 Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-Worst Case Available Settling Time: 38.575 ns
+Worst Case Available Settling Time: 39.424 ns
 
 
 
@@ -326,16 +326,16 @@ Worst Case Available Settling Time: 38.575 ns
 +-------------------------------------------------------+----------+-------+----------+---------+---------------------+
 ; Clock                                                 ; Setup    ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
 +-------------------------------------------------------+----------+-------+----------+---------+---------------------+
-; Worst-case Slack                                      ; -11.060  ; 0.015 ; N/A      ; N/A     ; -2.862              ;
-;  Clock_Divider:div|clk_out                            ; -9.329   ; 0.015 ; N/A      ; N/A     ; -1.403              ;
-;  MAX10_CLK1_50                                        ; -1.753   ; 0.390 ; N/A      ; N/A     ; 9.328               ;
-;  pll_inst|altpll_component|auto_generated|pll1|clk[0] ; -10.913  ; 0.220 ; N/A      ; N/A     ; 19.569              ;
-;  rect_off_x[10]                                       ; -11.060  ; 0.589 ; N/A      ; N/A     ; -2.862              ;
-; Design-wide TNS                                       ; -973.028 ; 0.0   ; 0.0      ; 0.0     ; -464.56             ;
-;  Clock_Divider:div|clk_out                            ; -811.504 ; 0.000 ; N/A      ; N/A     ; -133.285            ;
-;  MAX10_CLK1_50                                        ; -1.753   ; 0.000 ; N/A      ; N/A     ; 0.000               ;
-;  pll_inst|altpll_component|auto_generated|pll1|clk[0] ; -130.107 ; 0.000 ; N/A      ; N/A     ; 0.000               ;
-;  rect_off_x[10]                                       ; -29.664  ; 0.000 ; N/A      ; N/A     ; -331.275            ;
+; Worst-case Slack                                      ; -10.290  ; 0.220 ; N/A      ; N/A     ; -2.228              ;
+;  MAX10_CLK1_50                                        ; -1.750   ; 0.377 ; N/A      ; N/A     ; 9.329               ;
+;  ball_off_x[10]                                       ; -8.986   ; 0.661 ; N/A      ; N/A     ; -2.228              ;
+;  clock_divider:div|clk_out                            ; -10.290  ; 0.264 ; N/A      ; N/A     ; -1.403              ;
+;  pll_inst|altpll_component|auto_generated|pll1|clk[0] ; -9.081   ; 0.220 ; N/A      ; N/A     ; 19.575              ;
+; Design-wide TNS                                       ; -668.445 ; 0.0   ; 0.0      ; 0.0     ; -367.888            ;
+;  MAX10_CLK1_50                                        ; -1.750   ; 0.000 ; N/A      ; N/A     ; 0.000               ;
+;  ball_off_x[10]                                       ; -25.768  ; 0.000 ; N/A      ; N/A     ; -283.708            ;
+;  clock_divider:div|clk_out                            ; -534.256 ; 0.000 ; N/A      ; N/A     ; -84.180             ;
+;  pll_inst|altpll_component|auto_generated|pll1|clk[0] ; -106.671 ; 0.000 ; N/A      ; N/A     ; 0.000               ;
 +-------------------------------------------------------+----------+-------+----------+---------+---------------------+
 
 
@@ -416,7 +416,6 @@ Worst Case Available Settling Time: 38.575 ns
 ; B[3]         ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; VGA_hsync    ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; VGA_vsync    ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
-; gpio0        ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; ~ALTERA_TDO~ ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 +--------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
 
@@ -426,18 +425,22 @@ Worst Case Available Settling Time: 38.575 ns
 +---------------------+-----------------------+-----------------+-----------------+
 ; Pin                 ; I/O Standard          ; 10-90 Rise Time ; 90-10 Fall Time ;
 +---------------------+-----------------------+-----------------+-----------------+
-; SW[4]               ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
-; SW[5]               ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
-; SW[6]               ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
-; SW[7]               ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
 ; SW[0]               ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
 ; SW[1]               ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
 ; SW[2]               ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
 ; SW[3]               ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
-; KEY[1]              ; 3.3 V Schmitt Trigger ; 2640 ps         ; 2640 ps         ;
-; KEY[0]              ; 3.3 V Schmitt Trigger ; 2640 ps         ; 2640 ps         ;
-; SW[9]               ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
+; SW[4]               ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
+; SW[5]               ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
+; SW[6]               ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
+; SW[7]               ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
 ; SW[8]               ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
+; SW[9]               ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
+; KEY[1]              ; 3.3 V Schmitt Trigger ; 2640 ps         ; 2640 ps         ;
+; gpio[0]             ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
+; gpio[1]             ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
+; gpio[2]             ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
+; gpio[3]             ; 2.5 V                 ; 2000 ps         ; 2000 ps         ;
+; KEY[0]              ; 3.3 V Schmitt Trigger ; 2640 ps         ; 2640 ps         ;
 ; MAX10_CLK1_50       ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
 ; ~ALTERA_TMS~        ; 2.5 V Schmitt Trigger ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_TCK~        ; 2.5 V Schmitt Trigger ; 2000 ps         ; 2000 ps         ;
@@ -526,7 +529,6 @@ Worst Case Available Settling Time: 38.575 ns
 ; B[3]         ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 3.73e-08 V                   ; 3.2 V               ; -0.127 V            ; 0.219 V                              ; 0.346 V                              ; 4.45e-10 s                  ; 4.51e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 3.73e-08 V                  ; 3.2 V              ; -0.127 V           ; 0.219 V                             ; 0.346 V                             ; 4.45e-10 s                 ; 4.51e-10 s                 ; No                        ; No                        ;
 ; VGA_hsync    ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 3.73e-08 V                   ; 3.2 V               ; -0.128 V            ; 0.219 V                              ; 0.346 V                              ; 4.45e-10 s                  ; 4.51e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 3.73e-08 V                  ; 3.2 V              ; -0.128 V           ; 0.219 V                             ; 0.346 V                             ; 4.45e-10 s                 ; 4.51e-10 s                 ; No                        ; No                        ;
 ; VGA_vsync    ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 3.73e-08 V                   ; 3.2 V               ; -0.127 V            ; 0.219 V                              ; 0.346 V                              ; 4.45e-10 s                  ; 4.51e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 3.73e-08 V                  ; 3.2 V              ; -0.127 V           ; 0.219 V                             ; 0.346 V                             ; 4.45e-10 s                 ; 4.51e-10 s                 ; No                        ; No                        ;
-; gpio0        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 3.73e-08 V                   ; 3.2 V               ; -0.117 V            ; 0.262 V                              ; 0.424 V                              ; 4.61e-10 s                  ; 4.88e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 3.73e-08 V                  ; 3.2 V              ; -0.117 V           ; 0.262 V                             ; 0.424 V                             ; 4.61e-10 s                 ; 4.88e-10 s                 ; No                        ; No                        ;
 ; ~ALTERA_TDO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.39e-08 V                   ; 2.39 V              ; -0.0409 V           ; 0.21 V                               ; 0.121 V                              ; 4.7e-10 s                   ; 5.93e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.39e-08 V                  ; 2.39 V             ; -0.0409 V          ; 0.21 V                              ; 0.121 V                             ; 4.7e-10 s                  ; 5.93e-10 s                 ; No                        ; Yes                       ;
 +--------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 
@@ -608,7 +610,6 @@ Worst Case Available Settling Time: 38.575 ns
 ; B[3]         ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 3.41e-06 V                   ; 3.16 V              ; -0.0688 V           ; 0.26 V                               ; 0.209 V                              ; 4.69e-10 s                  ; 6.21e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 3.41e-06 V                  ; 3.16 V             ; -0.0688 V          ; 0.26 V                              ; 0.209 V                             ; 4.69e-10 s                 ; 6.21e-10 s                 ; No                        ; No                        ;
 ; VGA_hsync    ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 3.41e-06 V                   ; 3.16 V              ; -0.0694 V           ; 0.259 V                              ; 0.209 V                              ; 4.69e-10 s                  ; 6.21e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 3.41e-06 V                  ; 3.16 V             ; -0.0694 V          ; 0.259 V                             ; 0.209 V                             ; 4.69e-10 s                 ; 6.21e-10 s                 ; No                        ; No                        ;
 ; VGA_vsync    ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 3.41e-06 V                   ; 3.16 V              ; -0.0688 V           ; 0.26 V                               ; 0.209 V                              ; 4.69e-10 s                  ; 6.21e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 3.41e-06 V                  ; 3.16 V             ; -0.0688 V          ; 0.26 V                              ; 0.209 V                             ; 4.69e-10 s                 ; 6.21e-10 s                 ; No                        ; No                        ;
-; gpio0        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 3.41e-06 V                   ; 3.15 V              ; -0.0625 V           ; 0.334 V                              ; 0.27 V                               ; 5.02e-10 s                  ; 6.47e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 3.41e-06 V                  ; 3.15 V             ; -0.0625 V          ; 0.334 V                             ; 0.27 V                              ; 5.02e-10 s                 ; 6.47e-10 s                 ; No                        ; No                        ;
 ; ~ALTERA_TDO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.97e-06 V                   ; 2.36 V              ; -0.0173 V           ; 0.144 V                              ; 0.094 V                              ; 6.44e-10 s                  ; 7.2e-10 s                   ; No                         ; Yes                        ; 2.32 V                      ; 1.97e-06 V                  ; 2.36 V             ; -0.0173 V          ; 0.144 V                             ; 0.094 V                             ; 6.44e-10 s                 ; 7.2e-10 s                  ; No                        ; Yes                       ;
 +--------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 
@@ -690,7 +691,6 @@ Worst Case Available Settling Time: 38.575 ns
 ; B[3]         ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 5.04e-07 V                   ; 3.64 V              ; -0.0201 V           ; 0.391 V                              ; 0.088 V                              ; 2.79e-10 s                  ; 3.95e-10 s                  ; No                         ; Yes                        ; 3.46 V                      ; 5.04e-07 V                  ; 3.64 V             ; -0.0201 V          ; 0.391 V                             ; 0.088 V                             ; 2.79e-10 s                 ; 3.95e-10 s                 ; No                        ; Yes                       ;
 ; VGA_hsync    ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 5.04e-07 V                   ; 3.65 V              ; -0.0209 V           ; 0.391 V                              ; 0.09 V                               ; 2.79e-10 s                  ; 3.95e-10 s                  ; No                         ; Yes                        ; 3.46 V                      ; 5.04e-07 V                  ; 3.65 V             ; -0.0209 V          ; 0.391 V                             ; 0.09 V                              ; 2.79e-10 s                 ; 3.95e-10 s                 ; No                        ; Yes                       ;
 ; VGA_vsync    ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 5.04e-07 V                   ; 3.64 V              ; -0.0201 V           ; 0.391 V                              ; 0.088 V                              ; 2.79e-10 s                  ; 3.95e-10 s                  ; No                         ; Yes                        ; 3.46 V                      ; 5.04e-07 V                  ; 3.64 V             ; -0.0201 V          ; 0.391 V                             ; 0.088 V                             ; 2.79e-10 s                 ; 3.95e-10 s                 ; No                        ; Yes                       ;
-; gpio0        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 5.04e-07 V                   ; 3.63 V              ; -0.0264 V           ; 0.468 V                              ; 0.142 V                              ; 3.02e-10 s                  ; 4.42e-10 s                  ; No                         ; Yes                        ; 3.46 V                      ; 5.04e-07 V                  ; 3.63 V             ; -0.0264 V          ; 0.468 V                             ; 0.142 V                             ; 3.02e-10 s                 ; 4.42e-10 s                 ; No                        ; Yes                       ;
 ; ~ALTERA_TDO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 1.68e-07 V                   ; 2.73 V              ; -0.0395 V           ; 0.361 V                              ; 0.109 V                              ; 3.1e-10 s                   ; 4.41e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 1.68e-07 V                  ; 2.73 V             ; -0.0395 V          ; 0.361 V                             ; 0.109 V                             ; 3.1e-10 s                  ; 4.41e-10 s                 ; No                        ; Yes                       ;
 +--------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 
@@ -700,15 +700,15 @@ Worst Case Available Settling Time: 38.575 ns
 +------------------------------------------------------+------------------------------------------------------+----------+----------+----------+----------+
 ; From Clock                                           ; To Clock                                             ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +------------------------------------------------------+------------------------------------------------------+----------+----------+----------+----------+
-; Clock_Divider:div|clk_out                            ; Clock_Divider:div|clk_out                            ; 3949     ; 0        ; 0        ; 0        ;
-; rect_off_x[10]                                       ; Clock_Divider:div|clk_out                            ; 575      ; 575      ; 0        ; 0        ;
-; Clock_Divider:div|clk_out                            ; MAX10_CLK1_50                                        ; 1        ; 1        ; 0        ; 0        ;
+; ball_off_x[10]                                       ; ball_off_x[10]                                       ; 550      ; 550      ; 550      ; 550      ;
+; clock_divider:div|clk_out                            ; ball_off_x[10]                                       ; 11110    ; 0        ; 11110    ; 0        ;
+; ball_off_x[10]                                       ; clock_divider:div|clk_out                            ; 982      ; 982      ; 0        ; 0        ;
+; clock_divider:div|clk_out                            ; clock_divider:div|clk_out                            ; 908      ; 0        ; 0        ; 0        ;
+; clock_divider:div|clk_out                            ; MAX10_CLK1_50                                        ; 1        ; 1        ; 0        ; 0        ;
 ; MAX10_CLK1_50                                        ; MAX10_CLK1_50                                        ; 5975     ; 0        ; 0        ; 0        ;
-; Clock_Divider:div|clk_out                            ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 251580   ; 0        ; 0        ; 0        ;
-; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 954      ; 0        ; 0        ; 0        ;
-; rect_off_x[10]                                       ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 3300     ; 3300     ; 0        ; 0        ;
-; Clock_Divider:div|clk_out                            ; rect_off_x[10]                                       ; 12064    ; 0        ; 12064    ; 0        ;
-; rect_off_x[10]                                       ; rect_off_x[10]                                       ; 550      ; 550      ; 550      ; 550      ;
+; ball_off_x[10]                                       ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 528      ; 528      ; 0        ; 0        ;
+; clock_divider:div|clk_out                            ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 21792    ; 0        ; 0        ; 0        ;
+; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 1528     ; 0        ; 0        ; 0        ;
 +------------------------------------------------------+------------------------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -718,15 +718,15 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +------------------------------------------------------+------------------------------------------------------+----------+----------+----------+----------+
 ; From Clock                                           ; To Clock                                             ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +------------------------------------------------------+------------------------------------------------------+----------+----------+----------+----------+
-; Clock_Divider:div|clk_out                            ; Clock_Divider:div|clk_out                            ; 3949     ; 0        ; 0        ; 0        ;
-; rect_off_x[10]                                       ; Clock_Divider:div|clk_out                            ; 575      ; 575      ; 0        ; 0        ;
-; Clock_Divider:div|clk_out                            ; MAX10_CLK1_50                                        ; 1        ; 1        ; 0        ; 0        ;
+; ball_off_x[10]                                       ; ball_off_x[10]                                       ; 550      ; 550      ; 550      ; 550      ;
+; clock_divider:div|clk_out                            ; ball_off_x[10]                                       ; 11110    ; 0        ; 11110    ; 0        ;
+; ball_off_x[10]                                       ; clock_divider:div|clk_out                            ; 982      ; 982      ; 0        ; 0        ;
+; clock_divider:div|clk_out                            ; clock_divider:div|clk_out                            ; 908      ; 0        ; 0        ; 0        ;
+; clock_divider:div|clk_out                            ; MAX10_CLK1_50                                        ; 1        ; 1        ; 0        ; 0        ;
 ; MAX10_CLK1_50                                        ; MAX10_CLK1_50                                        ; 5975     ; 0        ; 0        ; 0        ;
-; Clock_Divider:div|clk_out                            ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 251580   ; 0        ; 0        ; 0        ;
-; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 954      ; 0        ; 0        ; 0        ;
-; rect_off_x[10]                                       ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 3300     ; 3300     ; 0        ; 0        ;
-; Clock_Divider:div|clk_out                            ; rect_off_x[10]                                       ; 12064    ; 0        ; 12064    ; 0        ;
-; rect_off_x[10]                                       ; rect_off_x[10]                                       ; 550      ; 550      ; 550      ; 550      ;
+; ball_off_x[10]                                       ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 528      ; 528      ; 0        ; 0        ;
+; clock_divider:div|clk_out                            ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 21792    ; 0        ; 0        ; 0        ;
+; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; 1528     ; 0        ; 0        ; 0        ;
 +------------------------------------------------------+------------------------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -750,10 +750,10 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
-; Unconstrained Input Ports       ; 8     ; 8    ;
-; Unconstrained Input Port Paths  ; 827   ; 827  ;
-; Unconstrained Output Ports      ; 23    ; 23   ;
-; Unconstrained Output Port Paths ; 86    ; 86   ;
+; Unconstrained Input Ports       ; 5     ; 5    ;
+; Unconstrained Input Port Paths  ; 379   ; 379  ;
+; Unconstrained Output Ports      ; 31    ; 31   ;
+; Unconstrained Output Port Paths ; 326   ; 326  ;
 +---------------------------------+-------+------+
 
 
@@ -762,10 +762,10 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +------------------------------------------------------+------------------------------------------------------+-----------+-------------+
 ; Target                                               ; Clock                                                ; Type      ; Status      ;
 +------------------------------------------------------+------------------------------------------------------+-----------+-------------+
-; Clock_Divider:div|clk_out                            ; Clock_Divider:div|clk_out                            ; Base      ; Constrained ;
 ; MAX10_CLK1_50                                        ; MAX10_CLK1_50                                        ; Base      ; Constrained ;
+; ball_off_x[10]                                       ; ball_off_x[10]                                       ; Base      ; Constrained ;
+; clock_divider:div|clk_out                            ; clock_divider:div|clk_out                            ; Base      ; Constrained ;
 ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; pll_inst|altpll_component|auto_generated|pll1|clk[0] ; Generated ; Constrained ;
-; rect_off_x[10]                                       ; rect_off_x[10]                                       ; Base      ; Constrained ;
 +------------------------------------------------------+------------------------------------------------------+-----------+-------------+
 
 
@@ -775,13 +775,10 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Input Port ; Comment                                                                              ;
 +------------+--------------------------------------------------------------------------------------+
 ; KEY[0]     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; KEY[1]     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; SW[0]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; SW[1]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; SW[2]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; SW[3]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; SW[8]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; SW[9]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; gpio[0]    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; gpio[1]    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; gpio[2]    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; gpio[3]    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 +------------+--------------------------------------------------------------------------------------+
 
 
@@ -807,6 +804,14 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; HEX[1][5]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX[1][6]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX[1][7]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[0]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[1]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[2]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[3]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[4]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[5]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[6]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[7]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; R[0]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; R[1]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; R[2]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -822,13 +827,10 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Input Port ; Comment                                                                              ;
 +------------+--------------------------------------------------------------------------------------+
 ; KEY[0]     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; KEY[1]     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; SW[0]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; SW[1]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; SW[2]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; SW[3]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; SW[8]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; SW[9]      ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; gpio[0]    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; gpio[1]    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; gpio[2]    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; gpio[3]    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 +------------+--------------------------------------------------------------------------------------+
 
 
@@ -854,6 +856,14 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; HEX[1][5]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX[1][6]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX[1][7]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[0]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[1]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[2]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[3]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[4]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[5]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[6]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[7]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; R[0]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; R[1]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; R[2]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -869,7 +879,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Thu Apr 04 13:31:17 2024
+    Info: Processing started: Thu Apr 04 14:20:10 2024
 Info: Command: quartus_sta pingpong -c pingpong
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -884,8 +894,8 @@ Info (332110): Deriving PLL clocks
     Info (332110): create_generated_clock -source {pll_inst|altpll_component|auto_generated|pll1|inclk[0]} -divide_by 147 -multiply_by 74 -duty_cycle 50.00 -name {pll_inst|altpll_component|auto_generated|pll1|clk[0]} {pll_inst|altpll_component|auto_generated|pll1|clk[0]}
 Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
 Info (332105): Deriving Clocks
-    Info (332105): create_clock -period 1.000 -name Clock_Divider:div|clk_out Clock_Divider:div|clk_out
-    Info (332105): create_clock -period 1.000 -name rect_off_x[10] rect_off_x[10]
+    Info (332105): create_clock -period 1.000 -name clock_divider:div|clk_out clock_divider:div|clk_out
+    Info (332105): create_clock -period 1.000 -name ball_off_x[10] ball_off_x[10]
 Info (332097): The following timing edges are non-unate.  The Timing Analyzer will assume pos-unate behavior for these edges in the clock network.
     Info (332098): Cell: detect|Add0~16  from: datab  to: combout
     Info (332098): Cell: detect|Add0~18  from: cin  to: combout
@@ -909,84 +919,84 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
     Info (332098): Cell: detect|Add0~54  from: cin  to: combout
     Info (332098): Cell: detect|Add0~56  from: cin  to: combout
     Info (332098): Cell: detect|Add0~58  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~16  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~18  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~18  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~20  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~20  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~22  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~22  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~24  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~24  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~26  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~26  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~28  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~28  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~30  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~30  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~32  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~32  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~34  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~34  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~36  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~36  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~38  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~38  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~40  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~40  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~42  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~42  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~44  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~44  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~46  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~46  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~48  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~48  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~50  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~50  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~52  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~52  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~54  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~54  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~56  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~56  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~58  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~58  from: datad  to: combout
+    Info (332098): Cell: detect|Add7~14  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~16  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~16  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~18  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~18  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~20  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~20  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~22  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~22  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~24  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~24  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~26  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~26  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~28  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~28  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~30  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~30  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~32  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~32  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~34  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~34  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~36  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~36  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~38  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~38  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~40  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~40  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~42  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~42  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~44  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~44  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~46  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~46  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~48  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~48  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~50  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~50  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~52  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~52  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~54  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~54  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~56  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~56  from: datad  to: combout
 Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1200mV 85C Model
 Info: Can't run Report Timing Closure Recommendations. The current device family is not supported.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -11.060
+Info (332146): Worst-case setup slack is -10.290
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -11.060             -29.664 rect_off_x[10] 
-    Info (332119):   -10.913            -130.107 pll_inst|altpll_component|auto_generated|pll1|clk[0] 
-    Info (332119):    -9.329            -811.504 Clock_Divider:div|clk_out 
-    Info (332119):    -1.753              -1.753 MAX10_CLK1_50 
-Info (332146): Worst-case hold slack is 0.334
+    Info (332119):   -10.290            -534.256 clock_divider:div|clk_out 
+    Info (332119):    -9.081            -106.671 pll_inst|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    -8.986             -25.768 ball_off_x[10] 
+    Info (332119):    -1.750              -1.750 MAX10_CLK1_50 
+Info (332146): Worst-case hold slack is 0.498
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.334               0.000 Clock_Divider:div|clk_out 
-    Info (332119):     0.502               0.000 pll_inst|altpll_component|auto_generated|pll1|clk[0] 
-    Info (332119):     0.771               0.000 rect_off_x[10] 
-    Info (332119):     1.009               0.000 MAX10_CLK1_50 
+    Info (332119):     0.498               0.000 pll_inst|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     0.676               0.000 clock_divider:div|clk_out 
+    Info (332119):     0.988               0.000 MAX10_CLK1_50 
+    Info (332119):     1.342               0.000 ball_off_x[10] 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is -2.862
+Info (332146): Worst-case minimum pulse width slack is -2.228
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.862            -331.275 rect_off_x[10] 
-    Info (332119):    -1.403            -133.285 Clock_Divider:div|clk_out 
-    Info (332119):     9.647               0.000 MAX10_CLK1_50 
-    Info (332119):    19.586               0.000 pll_inst|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    -2.228            -283.708 ball_off_x[10] 
+    Info (332119):    -1.403             -84.180 clock_divider:div|clk_out 
+    Info (332119):     9.637               0.000 MAX10_CLK1_50 
+    Info (332119):    19.585               0.000 pll_inst|altpll_component|auto_generated|pll1|clk[0] 
 Info (332114): Report Metastability: Found 2 synchronizer chains.
     Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
     Info (332114): Number of Synchronizer Chains Found: 2
     Info (332114): Shortest Synchronizer Chain: 2 Registers
     Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-    Info (332114): Worst Case Available Settling Time: 37.296 ns
+    Info (332114): Worst Case Available Settling Time: 38.972 ns
     Info (332114): 
 Info: Analyzing Slow 1200mV 0C Model
 Info (334003): Started post-fitting delay annotation
@@ -1014,80 +1024,80 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
     Info (332098): Cell: detect|Add0~54  from: cin  to: combout
     Info (332098): Cell: detect|Add0~56  from: cin  to: combout
     Info (332098): Cell: detect|Add0~58  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~16  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~18  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~18  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~20  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~20  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~22  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~22  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~24  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~24  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~26  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~26  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~28  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~28  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~30  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~30  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~32  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~32  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~34  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~34  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~36  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~36  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~38  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~38  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~40  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~40  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~42  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~42  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~44  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~44  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~46  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~46  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~48  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~48  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~50  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~50  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~52  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~52  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~54  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~54  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~56  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~56  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~58  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~58  from: datad  to: combout
+    Info (332098): Cell: detect|Add7~14  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~16  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~16  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~18  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~18  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~20  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~20  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~22  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~22  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~24  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~24  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~26  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~26  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~28  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~28  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~30  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~30  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~32  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~32  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~34  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~34  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~36  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~36  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~38  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~38  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~40  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~40  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~42  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~42  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~44  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~44  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~46  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~46  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~48  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~48  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~50  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~50  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~52  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~52  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~54  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~54  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~56  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~56  from: datad  to: combout
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -10.158
+Info (332146): Worst-case setup slack is -9.238
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -10.158             -27.457 rect_off_x[10] 
-    Info (332119):    -9.687            -115.442 pll_inst|altpll_component|auto_generated|pll1|clk[0] 
-    Info (332119):    -8.431            -735.180 Clock_Divider:div|clk_out 
-    Info (332119):    -1.555              -1.555 MAX10_CLK1_50 
-Info (332146): Worst-case hold slack is 0.226
+    Info (332119):    -9.238            -480.676 clock_divider:div|clk_out 
+    Info (332119):    -8.360             -23.914 ball_off_x[10] 
+    Info (332119):    -8.061             -94.676 pll_inst|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    -1.533              -1.533 MAX10_CLK1_50 
+Info (332146): Worst-case hold slack is 0.419
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.226               0.000 Clock_Divider:div|clk_out 
-    Info (332119):     0.422               0.000 pll_inst|altpll_component|auto_generated|pll1|clk[0] 
-    Info (332119):     0.589               0.000 rect_off_x[10] 
-    Info (332119):     0.925               0.000 MAX10_CLK1_50 
+    Info (332119):     0.419               0.000 pll_inst|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     0.609               0.000 clock_divider:div|clk_out 
+    Info (332119):     0.910               0.000 MAX10_CLK1_50 
+    Info (332119):     1.195               0.000 ball_off_x[10] 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is -2.559
+Info (332146): Worst-case minimum pulse width slack is -2.033
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.559            -281.594 rect_off_x[10] 
-    Info (332119):    -1.403            -133.285 Clock_Divider:div|clk_out 
-    Info (332119):     9.655               0.000 MAX10_CLK1_50 
-    Info (332119):    19.569               0.000 pll_inst|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    -2.033            -235.258 ball_off_x[10] 
+    Info (332119):    -1.403             -84.180 clock_divider:div|clk_out 
+    Info (332119):     9.648               0.000 MAX10_CLK1_50 
+    Info (332119):    19.575               0.000 pll_inst|altpll_component|auto_generated|pll1|clk[0] 
 Info (332114): Report Metastability: Found 2 synchronizer chains.
     Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
     Info (332114): Number of Synchronizer Chains Found: 2
     Info (332114): Shortest Synchronizer Chain: 2 Registers
     Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-    Info (332114): Worst Case Available Settling Time: 37.411 ns
+    Info (332114): Worst Case Available Settling Time: 39.003 ns
     Info (332114): 
 Info: Analyzing Fast 1200mV 0C Model
 Info (332097): The following timing edges are non-unate.  The Timing Analyzer will assume pos-unate behavior for these edges in the clock network.
@@ -1113,87 +1123,87 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
     Info (332098): Cell: detect|Add0~54  from: cin  to: combout
     Info (332098): Cell: detect|Add0~56  from: cin  to: combout
     Info (332098): Cell: detect|Add0~58  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~16  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~18  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~18  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~20  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~20  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~22  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~22  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~24  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~24  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~26  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~26  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~28  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~28  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~30  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~30  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~32  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~32  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~34  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~34  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~36  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~36  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~38  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~38  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~40  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~40  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~42  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~42  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~44  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~44  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~46  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~46  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~48  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~48  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~50  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~50  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~52  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~52  from: datab  to: combout
-    Info (332098): Cell: detect|Add3~54  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~54  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~56  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~56  from: dataa  to: combout
-    Info (332098): Cell: detect|Add3~58  from: cin  to: combout
-    Info (332098): Cell: detect|Add3~58  from: datad  to: combout
+    Info (332098): Cell: detect|Add7~14  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~16  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~16  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~18  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~18  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~20  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~20  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~22  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~22  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~24  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~24  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~26  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~26  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~28  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~28  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~30  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~30  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~32  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~32  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~34  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~34  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~36  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~36  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~38  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~38  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~40  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~40  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~42  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~42  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~44  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~44  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~46  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~46  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~48  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~48  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~50  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~50  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~52  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~52  from: datab  to: combout
+    Info (332098): Cell: detect|Add7~54  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~54  from: dataa  to: combout
+    Info (332098): Cell: detect|Add7~56  from: cin  to: combout
+    Info (332098): Cell: detect|Add7~56  from: datad  to: combout
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -4.748
+Info (332146): Worst-case setup slack is -3.847
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -4.748             -12.734 rect_off_x[10] 
-    Info (332119):    -4.624             -55.020 pll_inst|altpll_component|auto_generated|pll1|clk[0] 
-    Info (332119):    -3.478            -300.004 Clock_Divider:div|clk_out 
-    Info (332119):    -0.685              -0.685 MAX10_CLK1_50 
-Info (332146): Worst-case hold slack is 0.015
+    Info (332119):    -3.847             -11.158 ball_off_x[10] 
+    Info (332119):    -3.842            -194.144 clock_divider:div|clk_out 
+    Info (332119):    -3.771             -44.336 pll_inst|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    -0.673              -0.673 MAX10_CLK1_50 
+Info (332146): Worst-case hold slack is 0.220
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.015               0.000 Clock_Divider:div|clk_out 
     Info (332119):     0.220               0.000 pll_inst|altpll_component|auto_generated|pll1|clk[0] 
-    Info (332119):     0.390               0.000 MAX10_CLK1_50 
-    Info (332119):     0.596               0.000 rect_off_x[10] 
+    Info (332119):     0.264               0.000 clock_divider:div|clk_out 
+    Info (332119):     0.377               0.000 MAX10_CLK1_50 
+    Info (332119):     0.661               0.000 ball_off_x[10] 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -1.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.000             -95.000 Clock_Divider:div|clk_out 
-    Info (332119):    -0.915             -47.985 rect_off_x[10] 
-    Info (332119):     9.328               0.000 MAX10_CLK1_50 
-    Info (332119):    19.633               0.000 pll_inst|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):    -1.000             -60.000 clock_divider:div|clk_out 
+    Info (332119):    -0.708             -24.091 ball_off_x[10] 
+    Info (332119):     9.329               0.000 MAX10_CLK1_50 
+    Info (332119):    19.635               0.000 pll_inst|altpll_component|auto_generated|pll1|clk[0] 
 Info (332114): Report Metastability: Found 2 synchronizer chains.
     Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
     Info (332114): Number of Synchronizer Chains Found: 2
     Info (332114): Shortest Synchronizer Chain: 2 Registers
     Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-    Info (332114): Worst Case Available Settling Time: 38.575 ns
+    Info (332114): Worst Case Available Settling Time: 39.424 ns
     Info (332114): 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 6 warnings
     Info: Peak virtual memory: 4832 megabytes
-    Info: Processing ended: Thu Apr 04 13:31:22 2024
-    Info: Elapsed time: 00:00:05
-    Info: Total CPU time (on all processors): 00:00:06
+    Info: Processing ended: Thu Apr 04 14:20:14 2024
+    Info: Elapsed time: 00:00:04
+    Info: Total CPU time (on all processors): 00:00:05
 
 

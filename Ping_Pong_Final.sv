@@ -1,6 +1,6 @@
 //`include "VGA_Controller.v"
 //`include "Clock_Divider.sv"
-module Ping_Pong_Final (
+module ping_pong_final (
     input MAX10_CLK1_50,
     input [9:0] SW,
     input [1:0] KEY,
@@ -74,11 +74,12 @@ module Ping_Pong_Final (
 */
     pll pll_inst (.inclk0(MAX10_CLK1_50), .c0(pixel_clk));
     clock_divider div (MAX10_CLK1_50, 32'd1250000, t_clk);
+    score score(4'b0001, 4'b0010, HEX);
     //xor4 xor4 (SW[3:0], sw_en);
     xor4 xor4 (~gpio[3:0], sw_en);
     assign op = sw_en & ball_detect_edge[0] & ball_detect_edge[1] & ball_detect_edge[2] & ball_detect_edge[3];
 
-    egde_detect detect (ball_size_x, 
+    edge_detect detect (ball_size_x, 
                         ball_size_y,
                         ball_ini_x, 
                         ball_ini_y,
