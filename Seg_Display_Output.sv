@@ -17,8 +17,8 @@ module seg_display_output (input logic [3:0] number,
             4'b1010: hex[7:0] = 8'b11111111; // Display nothing
             4'b1011: hex[7:0] = 8'b10111111; // -
             4'b1100: hex[7:0] = 8'b10001100; // P
-            4'b1101: hex[7:0] = 8'b00101111; // r.
-            4'b1110: hex[7:0] = 8'b00000110; // E.
+            4'b1101: hex[7:0] = 8'b01111001; // 1.
+            4'b1110: hex[7:0] = 8'b00100100; // 2.
             4'b1111: hex[7:0] = 8'b10001110; // F
             default: hex[7:0] = 8'b01111111; // .
         endcase 
