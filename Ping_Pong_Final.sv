@@ -1,6 +1,6 @@
 //`include "VGA_Controller.v"
 //`include "Clock_Divider.sv"
-module ping_pong_final (
+module Ping_Pong_Final (
     input MAX10_CLK1_50,
     input [9:0] SW,
     input [1:0] KEY,
@@ -14,9 +14,7 @@ module ping_pong_final (
 );
 
     logic pixel_clk, t_clk, disp_ena, hsync, vsync, sw_en, boost, op;
-    logic [1:0] paddle_R_detect_edge, paddle_L_detect_edge;
-    logic [3:0] r, b, g, seg0, seg1, ball_detect_edge;
-    logic [5:0] bounce_en;
+    logic [3:0] r, b, g, seg0, seg1, ball_detect_edge, paddle_R_detect_edge, paddle_L_detect_edge, bounce_en;
     logic [7:0] collision_detect;
     logic signed [31:0] col, row, 
                  ball_size_y, ball_size_x,  // Ball size
@@ -68,8 +66,6 @@ module ping_pong_final (
         paddle_L_off_x = 32'd0;
         paddle_L_off_y = 32'd0;
         paddle_L_vel = 32'd6;
-        
-        bounce_en = 4'b111111;
 
     end
 
@@ -82,14 +78,12 @@ module ping_pong_final (
     xor4 xor4 (~gpio[3:0], sw_en);
     assign op = sw_en & ball_detect_edge[0] & ball_detect_edge[1] & ball_detect_edge[2] & ball_detect_edge[3];
 
-    edge_detect detect (ball_size_x, 
+    egde_detect detect (ball_size_x, 
                         ball_size_y,
                         ball_ini_x, 
                         ball_ini_y,
                         ball_off_x, 
                         ball_off_y,
-                        ball_vel_x,
-                        ball_vel_y,
 
                         paddle_R_size_x,
                         paddle_R_size_y,
@@ -119,7 +113,7 @@ module ping_pong_final (
                                .row        (row));
 
 /*
-    Display score here
+    Display error message here
 */
     seg_display_output seg_out_p1_1(4'b1100, HEX[5]); // P
     seg_display_output seg_out_p1_2(4'b1101, HEX[4]); // 1.
@@ -128,7 +122,7 @@ module ping_pong_final (
     seg_display_output seg_out_p2_2(4'b1110, HEX[1]); // 2.
     seg_display_output seg_out_score_two(score_two, HEX[0]);
 
-    assign LED[1:0] = paddle_L_detect_edge[1:0];
+    assign LED[7:0] = collision_detect[7:0];
 
 /*
     Time block controlling the reset
@@ -162,13 +156,13 @@ module ping_pong_final (
             paddle_L_off_y = 32'd0;
             paddle_L_vel = 32'd6;
 
-            bounce_en = 4'b111111;
+            bounce_en = 4'b1111;
 
             r = 4'b1111;
             g = 4'b1111;
             b = 4'b1111;
         end else begin
-            
+            /*
             ball_off_y <= ball_off_y + ball_vel_y;
             ball_off_x <= ball_off_x + ball_vel_x;
             
@@ -193,30 +187,29 @@ module ping_pong_final (
                 bounce_en[3] <= 1'b0;
             end
 
-            if (collision_detect[0] & (collision_detect[2] | collision_detect[3] | collision_detect[4]) && bounce_en[4]) begin
-                ball_vel_x <= -ball_vel_x; 
-                bounce_en[4] <= 1'b0;
-            end
-
-            if (collision_detect[1] & (collision_detect[5] | collision_detect[6] | collision_detect[7]) && bounce_en[5]) begin
-                ball_vel_x <= -ball_vel_x; 
-                bounce_en[5] <= 1'b0;
-            end
-
             // Needed to stabilise each bounce
             if (ball_detect_edge[0]) bounce_en[0] <= 1'b1;
             if (ball_detect_edge[1]) bounce_en[1] <= 1'b1;
             if (ball_detect_edge[2]) bounce_en[2] <= 1'b1;
             if (ball_detect_edge[3]) bounce_en[3] <= 1'b1;
-            if (~collision_detect[0]) bounce_en[4] <= 1'b1;
-            if (~collision_detect[1]) bounce_en[5] <= 1'b1;
+            */
+            
+            
+
+
+            if (~gpio[0] && sw_en && ball_detect_edge[0]) ball_off_y <= ball_off_y + ball_vel_x; // ball going down
+            if (~gpio[1] && sw_en && ball_detect_edge[1]) ball_off_x <= ball_off_x + ball_vel_x; // ball going right
+            if (~gpio[2] && sw_en && ball_detect_edge[2]) ball_off_y <= ball_off_y - ball_vel_x; // ball going up
+            if (~gpio[3] && sw_en && ball_detect_edge[3]) ball_off_x <= ball_off_x - ball_vel_x; // ball going left
+
 
 
             // Paddle control
-            if (~gpio[0] && (gpio[0] ^ gpio[1]) && paddle_R_detect_edge[0]) paddle_R_off_y <= paddle_R_off_y + paddle_R_vel; // Right paddle going down
-            if (~gpio[1] && (gpio[0] ^ gpio[1]) && paddle_R_detect_edge[1]) paddle_R_off_y <= paddle_R_off_y - paddle_R_vel; // Right paddle going up
-            if (~gpio[2] && (gpio[2] ^ gpio[3]) && paddle_L_detect_edge[0]) paddle_L_off_y <= paddle_L_off_y + paddle_L_vel; // Left paddle going down
-            if (~gpio[3] && (gpio[2] ^ gpio[3]) && paddle_L_detect_edge[1]) paddle_L_off_y <= paddle_L_off_y - paddle_L_vel; // Left paddle going up
+
+            //if (~gpio[0] /*&& sw_en*/ && paddle_R_detect_edge[0]) paddle_R_off_y <= paddle_R_off_y + paddle_R_vel; // Right paddle going down
+            //if (~gpio[1] /*&& sw_en*/ && paddle_R_detect_edge[2]) paddle_R_off_y <= paddle_R_off_y - paddle_R_vel; // Right paddle going up
+            //if (~gpio[2] /*&& sw_en*/ && paddle_L_detect_edge[0]) paddle_L_off_y <= paddle_L_off_y + paddle_L_vel; // Left paddle going down
+            //if (~gpio[3] /*&& sw_en*/ && paddle_L_detect_edge[2]) paddle_L_off_y <= paddle_L_off_y - paddle_L_vel; // Left paddle going up
 
         end
         
