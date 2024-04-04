@@ -1,4 +1,4 @@
-module egde_detect (
+module edge_detect (
     input logic [31:0] ball_size_x, 
                        ball_size_y,  
                        ball_ini_x, 
