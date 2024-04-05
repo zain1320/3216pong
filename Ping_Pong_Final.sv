@@ -208,7 +208,7 @@ module ping_pong_final (
             
             if (~gpio[2] && sw_en && ball_detect_edge[2]) ball_off_y <= ball_off_y - ball_vel_x; // ball going up
             if (~gpio[3] && sw_en && ball_detect_edge[3]) ball_off_x <= ball_off_x - ball_vel_x; // ball going left
-            else if (~ball_detect_edge[3]) score <= score_two+4'd1; // one point for p2
+            else if (~ball_detect_edge[3]) score_two <= score_two+4'd1; // one point for p2
 
             // reset score once max points of 9 is reached
             if ((score_one || score_two) > 4'd9) begin
