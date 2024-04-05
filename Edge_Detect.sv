@@ -1,10 +1,12 @@
-module edge_detect (
+module Edge_Detect (
     input logic [31:0] ball_size_x, 
                        ball_size_y,  
                        ball_ini_x, 
                        ball_ini_y,     
                        ball_off_x, 
                        ball_off_y,
+							  ball_vel_x,
+                       ball_vel_y,
 
                        paddle_R_size_x,
                        paddle_R_size_y,
@@ -25,6 +27,7 @@ module edge_detect (
                        paddle_L_detect_edge, 
     output logic [7:0] collision_detect
 );
+
     logic [31:0] screen_size_x,
                  screen_size_y,
 
@@ -43,8 +46,8 @@ module edge_detect (
     initial begin
         screen_size_x <= 32'd640;
         screen_size_y <= 32'd480; 
-        //ball_real_pos_x <= ball_ini_x + ball_off_x;
-        //ball_real_pos_y <= ball_ini_y + ball_off_y;
+        ball_real_pos_x <= ball_ini_x + ball_off_x;
+        ball_real_pos_y <= ball_ini_y + ball_off_y;
         ball_detect_edge <= 4'b1111;
         collision_detect <= 8'd0;
     end
@@ -105,11 +108,7 @@ module edge_detect (
         
         if ((ball_real_pos_y + ball_size_y >= paddle_L_real_pos_y + paddle_L_size_y) && (ball_real_pos_y <= paddle_L_real_pos_y + paddle_L_size_y)) collision_detect[7] = 1'b1;
         else collision_detect[7] = 1'b0;
-            
         
-
-
-
         // Edge detection for the Right paddle
         if (paddle_R_real_pos_y + paddle_R_size_y >= screen_size_y)         paddle_R_detect_edge[0] = 1'b0;
         else if (paddle_R_real_pos_x + paddle_R_size_x >= screen_size_x)    paddle_R_detect_edge[1] = 1'b0;
