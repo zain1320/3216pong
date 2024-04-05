@@ -13,7 +13,7 @@ module ping_pong_final (
     output VGA_hsync, VGA_vsync
 );
 
-    logic pixel_clk, t_clk, disp_ena, hsync, vsync, sw_en, boost, op;
+    logic pixel_clk, t_clk, disp_ena, hsync, vsync, sw_en, boost, op, score_one, score_two;
     logic [3:0] r, b, g, seg0, seg1, ball_detect_edge, paddle_R_detect_edge, paddle_L_detect_edge, bounce_en;
     logic [7:0] collision_detect;
     logic signed [31:0] col, row, 
@@ -67,6 +67,9 @@ module ping_pong_final (
         paddle_L_off_y = 32'd0;
         paddle_L_vel = 32'd6;
 
+        score_one = 4'd0;
+        score_two = 4'd0;
+
     end
 
 /*
@@ -76,6 +79,7 @@ module ping_pong_final (
     clock_divider div (MAX10_CLK1_50, 32'd1250000, t_clk);
     //xor4 xor4 (SW[3:0], sw_en);
     xor4 xor4 (~gpio[3:0], sw_en);
+    // ball_detect_edge[0] is bottom, ...[1] is right, ...[2] is top, ...[3] is left 
     assign op = sw_en & ball_detect_edge[0] & ball_detect_edge[1] & ball_detect_edge[2] & ball_detect_edge[3];
 
     edge_detect detect (ball_size_x, 
@@ -161,6 +165,10 @@ module ping_pong_final (
             r = 4'b1111;
             g = 4'b1111;
             b = 4'b1111;
+
+            score_one = 4'd0;
+            score_two = 4'd0;
+
         end else begin
             /*
             ball_off_y <= ball_off_y + ball_vel_y;
@@ -193,16 +201,20 @@ module ping_pong_final (
             if (ball_detect_edge[2]) bounce_en[2] <= 1'b1;
             if (ball_detect_edge[3]) bounce_en[3] <= 1'b1;
             */
-            
-            
-
-
+        
             if (~gpio[0] && sw_en && ball_detect_edge[0]) ball_off_y <= ball_off_y + ball_vel_x; // ball going down
             if (~gpio[1] && sw_en && ball_detect_edge[1]) ball_off_x <= ball_off_x + ball_vel_x; // ball going right
+            else if (~ball_detect_edge[1]) score_one <= score_one+4'd1; // one point for p1
+            
             if (~gpio[2] && sw_en && ball_detect_edge[2]) ball_off_y <= ball_off_y - ball_vel_x; // ball going up
             if (~gpio[3] && sw_en && ball_detect_edge[3]) ball_off_x <= ball_off_x - ball_vel_x; // ball going left
+            else if (~ball_detect_edge[3]) score <= score_two+4'd1; // one point for p2
 
-
+            // reset score once max points of 9 is reached
+            if ((score_one || score_two) > 4'd9) begin
+                score_one <= 4'd0;
+                score_two <= 4'd0;
+            end
 
             // Paddle control
 

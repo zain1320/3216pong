@@ -1,11 +1,10 @@
 vendor_name = ModelSim
-source_file = 1, C:/Users/panem/OneDrive - York University/Lassonde Engineering (OneDrive)/Lassonde Engineering/W24/EECS 3216/Project/vga_controller.v
 source_file = 1, C:/Users/panem/OneDrive - York University/Lassonde Engineering (OneDrive)/Lassonde Engineering/W24/EECS 3216/Project/seg_display_output.sv
-source_file = 1, C:/Users/panem/OneDrive - York University/Lassonde Engineering (OneDrive)/Lassonde Engineering/W24/EECS 3216/Project/score.sv
 source_file = 1, C:/Users/panem/OneDrive - York University/Lassonde Engineering (OneDrive)/Lassonde Engineering/W24/EECS 3216/Project/ping_pong_final.sv
 source_file = 1, C:/Users/panem/OneDrive - York University/Lassonde Engineering (OneDrive)/Lassonde Engineering/W24/EECS 3216/Project/edge_detect.sv
 source_file = 1, C:/Users/panem/OneDrive - York University/Lassonde Engineering (OneDrive)/Lassonde Engineering/W24/EECS 3216/Project/clock_divider.sv
 source_file = 1, C:/Users/panem/OneDrive - York University/Lassonde Engineering (OneDrive)/Lassonde Engineering/W24/EECS 3216/Project/ip/pll.v
+source_file = 1, C:/Users/panem/OneDrive - York University/Lassonde Engineering (OneDrive)/Lassonde Engineering/W24/EECS 3216/Project/vga_controller.v
 source_file = 1, c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altpll.tdf
 source_file = 1, c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/aglobal201.inc
 source_file = 1, c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/stratix_pll.inc

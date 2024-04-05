@@ -105,11 +105,7 @@ module edge_detect (
         
         if ((ball_real_pos_y + ball_size_y >= paddle_L_real_pos_y + paddle_L_size_y) && (ball_real_pos_y <= paddle_L_real_pos_y + paddle_L_size_y)) collision_detect[7] = 1'b1;
         else collision_detect[7] = 1'b0;
-            
         
-
-
-
         // Edge detection for the Right paddle
         if (paddle_R_real_pos_y + paddle_R_size_y >= screen_size_y)         paddle_R_detect_edge[0] = 1'b0;
         else if (paddle_R_real_pos_x + paddle_R_size_x >= screen_size_x)    paddle_R_detect_edge[1] = 1'b0;
