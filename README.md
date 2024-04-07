@@ -1,1 +1,1 @@
-In Quartus, add files to hierarchy with top-level entity: 'pingpong.sv'. Include the ip folder with 'ip/pll.v', and 'vga_controller.v'
+In Quartus Prime, add files to hierarchy with top-level entity: 'ping_pong_final.sv'. Include the ip folder with 'ip/pll.v', and 'vga_controller.v'. Additional files to add to hierarchy are submodules: 'clock_divider.sv', 'edge_detect.sv', and 'seg_display_output.sv'
